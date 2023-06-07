@@ -15,11 +15,14 @@ function onFormInput() {
   localStorage.setItem('feedback-form-state', JSON.stringify(savedFormValues));
 }
 
+let consoleData = {};
+
 window.onload = () => {
   if (!localStorage.getItem('feedback-form-state')) {
     return;
   }
   const savedFormObj = JSON.parse(localStorage.getItem('feedback-form-state'));
+  consoleData = savedFormObj;
 
   emailInpt.value = savedFormObj.email;
   messageInpt.value = savedFormObj.message;
@@ -27,6 +30,10 @@ window.onload = () => {
 
 formEl.addEventListener('submit', onFormSubmit);
 
-function onFormSubmit() {
+function onFormSubmit(event) {
+  event.preventDefault();
+  console.log(consoleData);
   localStorage.removeItem('feedback-form-state');
+  emailInpt.value = '';
+  messageInpt.value = '';
 }
