@@ -22,7 +22,6 @@ window.onload = () => {
     return;
   }
   const savedFormObj = JSON.parse(localStorage.getItem('feedback-form-state'));
-  consoleData = savedFormObj;
 
   emailInpt.value = savedFormObj.email;
   messageInpt.value = savedFormObj.message;
@@ -32,7 +31,7 @@ formEl.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(event) {
   event.preventDefault();
-  console.log(consoleData);
+  console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
   localStorage.removeItem('feedback-form-state');
   emailInpt.value = '';
   messageInpt.value = '';
