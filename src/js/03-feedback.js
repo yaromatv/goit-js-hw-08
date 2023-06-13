@@ -15,8 +15,6 @@ function onFormInput() {
   localStorage.setItem('feedback-form-state', JSON.stringify(savedFormValues));
 }
 
-let consoleData = {};
-
 window.onload = () => {
   if (!localStorage.getItem('feedback-form-state')) {
     return;
@@ -31,6 +29,10 @@ formEl.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(event) {
   event.preventDefault();
+  if (emailInpt.value === '' || messageInpt.value === '') {
+    window.alert('Please fullfill both fields');
+    return;
+  }
   console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
   localStorage.removeItem('feedback-form-state');
   emailInpt.value = '';
